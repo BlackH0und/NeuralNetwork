@@ -7,6 +7,10 @@ import ch.marcschifferle.neuro.NeuralLayer;
 
 import java.io.*;
 
+/**
+ * Made by Marc Schifferle
+ */
+
 public class Main {
 
 
