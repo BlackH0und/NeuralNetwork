@@ -24,10 +24,7 @@ public class Brain implements Serializable {
     public void think(double[][] inputs) {
         outputLayer1 = Calculations.apply(Calculations.matrixMultiply(inputs, layer1.weights), layer1.activationFunction);
         outputLayer2 = Calculations.apply(Calculations.matrixMultiply(outputLayer1, layer2.weights), layer2.activationFunction);
-        outputLayers.add(outputLayer2);
-        for(int i = 0; i<midLayers.length; i++) {
 
-        }
         outputLayer3 = Calculations.apply(Calculations.matrixMultiply(outputLayer2, layer3.weights), layer3.activationFunction);
     }
 
@@ -57,8 +54,9 @@ public class Brain implements Serializable {
             this.layer2.adjustWeights(adjustmentLayer2);
             this.layer3.adjustWeights(adjustmentLayer3);
 
-            if (i % 25000 == 0) {
+            if (i % 10000 == 0) {
                 System.out.println(" Training iteration " + i + " of " + numberOfTrainingIterations);
+                //System.out.println(Calculations.matrixToString(this.layer1.weights));
             }
         }
     }
