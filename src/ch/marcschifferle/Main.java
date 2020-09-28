@@ -20,7 +20,7 @@ public class Main {
         System.out.println("Prediction on data "
                 + testInput[0][0] + "  "
                 + testInput[0][1] + "  "
-                + testInput[0][2] + "  "
+                /*+ testInput[0][2] + "  "*/
                 + brain.getOutput()[0][0] + ", expected -> " + expected);
         System.out.println("\tDeviation -> " + (expected - brain.getOutput()[0][0]));
     }
@@ -51,31 +51,31 @@ public class Main {
             }
         }
 
-        NeuralLayer layer1 = new NeuralLayer(1, 3);
-        NeuralLayer layer2 = new NeuralLayer(3, 1);
-        NeuralLayer layer3 = new NeuralLayer(1, 3);
+        NeuralLayer layer1 = new NeuralLayer(2, 2);
+        //NeuralLayer layer2 = new NeuralLayer(3, 1);
+        NeuralLayer layer3 = new NeuralLayer(1, 2);
 
         double[][] inputs = new double[][]{
-                {0, 0, 1},
-                {1, 1, 1},
-                {1, 0, 1},
-                {0, 1, 1}
+                {0, 0},
+                {1, 1},
+                {1, 0},
+                {0, 1}
         };
 
         double[][] outputs = new double[][]{
                 {0},
+                {0},
                 {1},
-                {1},
-                {0}
+                {1}
         };
 
-        Brain brain = new Brain(layer1, layer2, layer3);
+        Brain brain = new Brain(layer1, layer3);
         for (int i = 0; i < 1; i++) {
-            brain.train(inputs, outputs, 5000000);
+            brain.train(inputs, outputs, 1000000);
 
-            predict(new double[][]{{1, 0, 1}}, 1, brain);
+            predict(new double[][]{{1, 0}}, 1, brain);
 
-            predict(new double[][]{{0, 1, 1}}, 0, brain);
+            predict(new double[][]{{1, 1}}, 0, brain);
         }
 
         /*try {
